@@ -24,5 +24,5 @@ public class User {
     private String password;
     @Column(nullable = false)
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> role;
+    private Collection<Role> roles;
 }
