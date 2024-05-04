@@ -39,19 +39,19 @@ public class InitDatabase implements CommandLineRunner {
         adminUser.setName("admin");
         adminUser.setUsername("admin");
         adminUser.setPassword("admin");
-        adminUser.setRole(Set.of(adminRole));
+        adminUser.setRoles(Set.of(adminRole));
 
         User accountantUser = new User();
         accountantUser.setName("accountant");
         accountantUser.setUsername("accountant");
         accountantUser.setPassword("accountant");
-        accountantUser.setRole(Set.of(accountantRole));
+        accountantUser.setRoles(Set.of(accountantRole));
 
         User userUser = new User();
         userUser.setName("user");
         userUser.setUsername("user");
         userUser.setPassword("user");
-        userUser.setRole(Set.of(userRole));
+        userUser.setRoles(Set.of(userRole));
 
         userRepository.save(adminUser);
         userRepository.save(accountantUser);
