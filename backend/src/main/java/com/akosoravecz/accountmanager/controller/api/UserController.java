@@ -1,6 +1,7 @@
 package com.akosoravecz.accountmanager.controller.api;
 
 import com.akosoravecz.accountmanager.controller.request.LoginRequest;
+import com.akosoravecz.accountmanager.controller.request.ModifyRolesRequest;
 import com.akosoravecz.accountmanager.controller.request.RegisterRequest;
 import com.akosoravecz.accountmanager.dto.model.UserDto;
 import com.akosoravecz.accountmanager.dto.response.LoginResponse;
@@ -33,7 +34,13 @@ public class UserController {
     }
 
     @GetMapping("/all_user")
-    public Collection<UserDto> allUser() {
-        return userService.getAllUser();
+    public ResponseEntity<Collection<UserDto>> allUser() {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
+    }
+
+    @PostMapping("/modify_role/add")
+    public ResponseEntity<UserDto> addRole(@RequestBody @Valid ModifyRolesRequest modifyRolesRequest) {
+        UserDto userDto = userService.addRole(modifyRolesRequest.getUsername(), modifyRolesRequest.getRoleName());
+        return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
 }

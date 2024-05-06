@@ -1,6 +1,7 @@
 package com.akosoravecz.accountmanager.controller.request;
 
 import com.akosoravecz.accountmanager.model.user.Role;
+import com.akosoravecz.accountmanager.validations.annotations.UniqueUsername;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -16,6 +17,8 @@ public class RegisterRequest {
     @NotBlank(message = "Username cannot be empty!")
     private String name;
 
+
+    @UniqueUsername
     @NotBlank(message = "Username cannot be empty!")
     private String username;
 

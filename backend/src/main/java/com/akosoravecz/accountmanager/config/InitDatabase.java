@@ -6,6 +6,7 @@ import com.akosoravecz.accountmanager.repository.RoleRepository;
 import com.akosoravecz.accountmanager.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class InitDatabase implements CommandLineRunner {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -38,19 +40,19 @@ public class InitDatabase implements CommandLineRunner {
         User adminUser = new User();
         adminUser.setName("admin");
         adminUser.setUsername("admin");
-        adminUser.setPassword("admin");
+        adminUser.setPassword(passwordEncoder.encode("admin"));
         adminUser.setRoles(Set.of(adminRole));
 
         User accountantUser = new User();
         accountantUser.setName("accountant");
         accountantUser.setUsername("accountant");
-        accountantUser.setPassword("accountant");
+        accountantUser.setPassword(passwordEncoder.encode("accountant"));
         accountantUser.setRoles(Set.of(accountantRole));
 
         User userUser = new User();
         userUser.setName("user");
         userUser.setUsername("user");
-        userUser.setPassword("user");
+        userUser.setPassword(passwordEncoder.encode("user"));
         userUser.setRoles(Set.of(userRole));
 
         userRepository.save(adminUser);

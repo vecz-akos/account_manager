@@ -8,11 +8,12 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
+@Accessors(chain = true)
 @NoArgsConstructor
-public class LoginRequest {
+public class ModifyRolesRequest {
     @NotBlank(message = "Username cannot be empty!")
     private String username;
 
-    @NotBlank(message = "Password cannot be empty!")
-    private String password;
+    @NotBlank(message = "Rolename cannot be empty!")
+    private String roleName;
 }
