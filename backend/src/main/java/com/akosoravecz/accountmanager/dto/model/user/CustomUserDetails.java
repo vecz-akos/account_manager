@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -24,13 +26,9 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(User user) {
         this.username = user.getUsername();
         this.password= user.getPassword();
-        List<GrantedAuthority> auths = new ArrayList<>();
-
-        for(Role role : user.getRoles()){
-
-            auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
-        }
-        this.authorities = auths;
+        this.authorities = user.getRoles().stream()
+                .map((role) -> new SimpleGrantedAuthority(role.getName().toUpperCase()))
+                .collect(Collectors.toSet());
     }
 
     @Override

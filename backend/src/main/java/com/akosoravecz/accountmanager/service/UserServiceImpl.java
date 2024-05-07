@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User is not exists."));
 
         List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority(role.getName().toUpperCase()))
                 .collect(Collectors.toList());
 
         return CustomUserDetails.builder()

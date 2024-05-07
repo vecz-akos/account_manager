@@ -5,6 +5,7 @@ import com.akosoravecz.accountmanager.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -46,9 +47,9 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/**").permitAll())
-                        //.requestMatchers("/auth/login", "/auth/register", "/auth/all_user").permitAll()
-                        //.requestMatchers("/**").authenticated())
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/invoice/**").hasAnyAuthority("ADMIN", "ACCOUNTANT")
+                        .requestMatchers("/invoice/**").permitAll())
                 .httpBasic(Customizer.withDefaults())
                     .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
