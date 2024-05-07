@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/invoice/**").hasAnyAuthority("ADMIN", "ACCOUNTANT")
-                        .requestMatchers("/invoice/**").permitAll())
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                     .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
