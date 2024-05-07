@@ -1,6 +1,6 @@
 package com.akosoravecz.accountmanager.dto.mapper;
 
-import com.akosoravecz.accountmanager.dto.model.RoleDto;
+import com.akosoravecz.accountmanager.dto.model.user.RoleDto;
 import com.akosoravecz.accountmanager.model.user.Role;
 import org.springframework.stereotype.Component;
 

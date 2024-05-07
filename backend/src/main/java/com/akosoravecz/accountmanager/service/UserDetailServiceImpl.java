@@ -1,14 +1,13 @@
 package com.akosoravecz.accountmanager.service;
 
-import com.akosoravecz.accountmanager.dto.model.CustomUserDetails;
+import com.akosoravecz.accountmanager.dto.model.user.CustomUserDetails;
 import com.akosoravecz.accountmanager.model.user.User;
-import com.akosoravecz.accountmanager.repository.UserRepository;
+import com.akosoravecz.accountmanager.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

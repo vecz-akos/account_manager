@@ -1,6 +1,6 @@
 package com.akosoravecz.accountmanager.validations;
 
-import com.akosoravecz.accountmanager.repository.UserRepository;
+import com.akosoravecz.accountmanager.repository.user.UserRepository;
 import com.akosoravecz.accountmanager.validations.annotations.UniqueUsername;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

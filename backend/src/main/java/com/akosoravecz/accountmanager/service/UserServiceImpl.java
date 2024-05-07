@@ -1,15 +1,13 @@
 package com.akosoravecz.accountmanager.service;
 
 import com.akosoravecz.accountmanager.controller.request.RegisterRequest;
-import com.akosoravecz.accountmanager.dto.mapper.RoleMapper;
 import com.akosoravecz.accountmanager.dto.mapper.UserMapper;
-import com.akosoravecz.accountmanager.dto.model.CustomUserDetails;
-import com.akosoravecz.accountmanager.dto.model.RoleDto;
-import com.akosoravecz.accountmanager.dto.model.UserDto;
+import com.akosoravecz.accountmanager.dto.model.user.CustomUserDetails;
+import com.akosoravecz.accountmanager.dto.model.user.UserDto;
 import com.akosoravecz.accountmanager.model.user.Role;
 import com.akosoravecz.accountmanager.model.user.User;
-import com.akosoravecz.accountmanager.repository.RoleRepository;
-import com.akosoravecz.accountmanager.repository.UserRepository;
+import com.akosoravecz.accountmanager.repository.user.RoleRepository;
+import com.akosoravecz.accountmanager.repository.user.UserRepository;
 import com.akosoravecz.accountmanager.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package com.akosoravecz.accountmanager.dto.model;
+package com.akosoravecz.accountmanager.dto.model.user;
 
 import lombok.*;
 

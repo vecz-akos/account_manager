@@ -1,4 +1,4 @@
-package com.akosoravecz.accountmanager.repository;
+package com.akosoravecz.accountmanager.repository.user;
 
 import com.akosoravecz.accountmanager.model.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
 package com.akosoravecz.accountmanager.config;
 
-import com.akosoravecz.accountmanager.repository.UserRepository;
+import com.akosoravecz.accountmanager.repository.user.UserRepository;
 import com.akosoravecz.accountmanager.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,8 +46,9 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/auth/login", "/auth/register", "/auth/all_user").permitAll()
-                        .requestMatchers("/**").authenticated())
+                        .requestMatchers("/**").permitAll())
+                        //.requestMatchers("/auth/login", "/auth/register", "/auth/all_user").permitAll()
+                        //.requestMatchers("/**").authenticated())
                 .httpBasic(Customizer.withDefaults())
                     .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

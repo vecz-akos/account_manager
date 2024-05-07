@@ -1,7 +1,7 @@
 package com.akosoravecz.accountmanager.service;
 
 import com.akosoravecz.accountmanager.controller.request.RegisterRequest;
-import com.akosoravecz.accountmanager.dto.model.UserDto;
+import com.akosoravecz.accountmanager.dto.model.user.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;

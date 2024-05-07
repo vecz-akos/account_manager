@@ -2,8 +2,8 @@ package com.akosoravecz.accountmanager.config;
 
 import com.akosoravecz.accountmanager.model.user.Role;
 import com.akosoravecz.accountmanager.model.user.User;
-import com.akosoravecz.accountmanager.repository.RoleRepository;
-import com.akosoravecz.accountmanager.repository.UserRepository;
+import com.akosoravecz.accountmanager.repository.user.RoleRepository;
+import com.akosoravecz.accountmanager.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
