@@ -7,6 +7,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@Component
 @AllArgsConstructor
 public class InvoiceAndDueDateRelationValidator implements ConstraintValidator<InvoiceAndDueDateRelation, InvoiceRequest> {
 

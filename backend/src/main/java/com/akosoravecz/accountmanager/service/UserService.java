@@ -13,7 +13,7 @@ public interface UserService extends UserDetailsService {
 
     Collection<UserDto> getAllUser();
 
-    boolean delete(UserDto userDto);
+    boolean delete(String username);
 
     UserDto addRole(String username, String roleName);
 

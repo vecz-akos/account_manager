@@ -45,8 +45,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/auth/all_user**").hasAuthority("ADMIN")
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/invoice/**").hasAnyAuthority("ADMIN", "ACCOUNTANT")
                         .anyRequest().authenticated())
