@@ -6,12 +6,14 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Invoices from './pages/Invoices';
 import ErrorPage from './pages/Error';
+import Registration from './pages/Registration';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/invoices" element={<Invoices />} />
         <Route path="*" element={<ErrorPage />} />
