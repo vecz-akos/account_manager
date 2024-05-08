@@ -1,10 +1,15 @@
-import React, { useContext } from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext';
 
 export default function NavBar() {
   const auth = useContext(AuthContext);
+
+  const handleLogout = () => {
+    auth.logout();
+  }
+
   return (
     <Navbar bg="primary" data-bs-theme="dark">
         <Container fluid>
@@ -22,8 +27,11 @@ export default function NavBar() {
               <Link className='nav-link' to="/admin">Admin</Link>
             </Nav>
               {
-                auth.authenticated ?
-                  <p>`Signed in as: ${auth.username}`</p>
+                auth?.getUsername() ?
+                  <>
+                    <p>{`Signed in as: ${auth.getUsername()}`}</p>
+                    <Button onClick={handleLogout}>Logout</Button>
+                  </>
                 : <Link to="/">Login</Link>
               }
           </Navbar.Collapse>

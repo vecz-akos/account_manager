@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AxiosContext } from '../contexts/AxiosContext'
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default function Invoices() {
   const { authAxios } = useContext(AxiosContext);
   const [ invoices, setInvoices ] = useState([]);
+  const [ errorMsg, setErrorMsg ] = useState("");
 
   const invoiceRequest = () => {
     authAxios.get("/invoice/").then(res => {
       setInvoices(res.data);
-    }).then(error => {
-      console.log(JSON.stringify(error));
+    }).catch(err => {
+      setErrorMsg("Please login to access invoices!");
     })
   }
   
@@ -20,6 +22,8 @@ export default function Invoices() {
   return (
     <>
       <h1>Invoices</h1>
+      <p>{errorMsg}</p>
+      <Link to="/invoices/new">Create new invoice</Link>
       <Table striped bordered hover>
         <thead>
           <tr>

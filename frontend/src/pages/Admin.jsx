@@ -5,12 +5,13 @@ import { Table } from 'react-bootstrap';
 export default function Admin() {
   const { publicAxios } = useContext(AxiosContext);
   const [ users, setUsers ] = useState([]);
+  const [ errorMsg, setErrorMsg ] = useState("");
 
   const usersRequest = () => {
     publicAxios.get("/auth/all_user").then(res => {
       setUsers(res.data);
-    }).then(error => {
-      console.log(JSON.stringify(error));
+    }).catch(error => {
+      setErrorMsg("Please login with admin user to access user list!");
     })
   }
   
@@ -21,6 +22,7 @@ export default function Admin() {
   return (
     <>
       <h1>Users</h1>
+      <p>{errorMsg}</p>
       <Table striped bordered hover>
         <thead>
           <tr>

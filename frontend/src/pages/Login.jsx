@@ -7,9 +7,10 @@ import { AxiosContext } from '../contexts/AxiosContext';
 
 export default function Login() {
   const auth = useContext(AuthContext);
-  const { publicAxios, authAxios } = useContext(AxiosContext);
+  const { publicAxios } = useContext(AxiosContext);
 
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(auth.authState.authenticated || false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,15 +32,23 @@ export default function Login() {
           username: username,
           authenticated: true,
         });
-      }).catch(error => {
-        setErrorMsg(error.response.data.exceptionMessage)
+        setIsLoggedIn(true);
+      }).catch(err => {
+        setErrorMsg("Wrong username or password!");
+        setIsLoggedIn(false);
       });
   }
-  return <>
+
+  const handleLogout = () => {
+    auth.logout();
+    setIsLoggedIn(false);
+  }
+
+  return isLoggedIn ?
+    <></>
+  : <>
     <Form onSubmit={handleSubmit}>
-      <Form.Text id="passwordHelpBlock" muted>
-        {errorMsg}
-      </Form.Text>
+      {errorMsg ? <Form.Text>{errorMsg}</Form.Text> : <></>}
       <Form.Group className="mb-3">
         <Form.Label>Username</Form.Label>
         <Form.Control name='username' />
