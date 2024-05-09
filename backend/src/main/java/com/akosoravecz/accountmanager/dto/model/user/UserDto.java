@@ -13,6 +13,5 @@ import java.util.Collection;
 public class UserDto {
     private String name;
     private String username;
-    private String password;
     private Collection<RoleDto> roles;
 }

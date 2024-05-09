@@ -11,9 +11,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 public class ModifyRolesRequest {
-    @NotBlank(message = "Username cannot be empty!")
-    private String username;
-
     @NotBlank(message = "Rolename cannot be empty!")
     private String roleName;
 }

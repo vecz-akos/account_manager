@@ -39,19 +39,17 @@ public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
     @Autowired
     private final PasswordEncoder passwordEncoder;
-    @Autowired
-    private final ModelMapper modelMapper;
 
     @Override
     public UserDto register(RegisterRequest registerRequest) {
-        UserDto newUser = new UserDto();
-        newUser.setName(registerRequest.getName());
-        newUser.setUsername(registerRequest.getUsername());
-        newUser.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        Role role = roleRepository.findById(registerRequest.getRole()).orElseThrow();
+        User user = new User();
+        user.setName(registerRequest.getName());
+        user.setUsername(registerRequest.getUsername());
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 
-        User user = modelMapper.map(newUser, User.class);
+        Role role = roleRepository.findById(registerRequest.getRole()).orElseThrow();
         user.setRoles(Set.of(role));
+
         User savedUser = userRepository.save(user);
         return UserMapper.toUserDto(savedUser);
     }
@@ -91,8 +89,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto removeRole(String username, String roleName) {
         User user = userRepository.findByUsername(username).orElseThrow();
-        Role role = roleRepository.findByName(roleName).orElseThrow();
-        user.getRoles().remove(role);
+        user.setRoles(user.getRoles().stream().filter(role -> role.getName().equals(roleName)).collect(Collectors.toSet()));
         userRepository.save(user);
         return UserMapper.toUserDto(user);
     }

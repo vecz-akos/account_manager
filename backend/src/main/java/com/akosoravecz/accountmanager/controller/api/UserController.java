@@ -43,9 +43,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(isDeleted);
     }
 
-    @PostMapping("/modify_role/add")
-    public ResponseEntity<UserDto> addRole(@RequestBody @Valid ModifyRolesRequest modifyRolesRequest) {
-        UserDto userDto = userService.addRole(modifyRolesRequest.getUsername(), modifyRolesRequest.getRoleName());
+    @PostMapping("/all_user/{username}/role")
+    public ResponseEntity<UserDto> addRole(@PathVariable(value="username") String username, @RequestBody @Valid ModifyRolesRequest modifyRolesRequest) {
+        UserDto userDto = userService.addRole(username, modifyRolesRequest.getRoleName());
+        return ResponseEntity.status(HttpStatus.OK).body(userDto);
+    }
+
+    @DeleteMapping("/all_user/{username}/role")
+    public ResponseEntity<UserDto> deleteRole(@PathVariable(value="username") String username, @RequestBody @Valid ModifyRolesRequest modifyRolesRequest) {
+        UserDto userDto = userService.removeRole(username, modifyRolesRequest.getRoleName());
         return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
 }
