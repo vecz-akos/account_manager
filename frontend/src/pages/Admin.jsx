@@ -19,6 +19,8 @@ export default function Admin() {
   };
 
   const handleRole = (event, user, role) => {
+    setErrorMsg("");
+    setInfoMsg("");
     if (event.target.checked) {
       authAxios.post(`/auth/all_user/${user}/role`, {
         "roleName": role
@@ -39,6 +41,8 @@ export default function Admin() {
   };
 
   const handleDelete = (username) => {
+    setErrorMsg("");
+    setInfoMsg("");
     authAxios.delete(`/auth/all_user/${username}`).then(res => {
       setInfoMsg(`User (${username}) was deleted.`)
     }).catch(err => {
