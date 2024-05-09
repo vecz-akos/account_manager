@@ -39,6 +39,7 @@ public class UserController {
 
     @DeleteMapping("/all_user/{username}")
     public ResponseEntity<Boolean> deleteUser(@PathVariable(value="username") String username) {
+        System.out.println(username);
         boolean isDeleted = userService.delete(username);
         return ResponseEntity.status(HttpStatus.OK).body(isDeleted);
     }

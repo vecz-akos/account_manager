@@ -29,7 +29,7 @@ export default function NavBar() {
               {
                 auth?.getUsername() ?
                   <>
-                    <p>{`Signed in as: ${auth.getUsername()}`}</p>
+                    <Navbar.Text>{`Signed in as: ${auth.getUsername()}`}</Navbar.Text>
                     <Button onClick={handleLogout}>Logout</Button>
                   </>
                 : <Link to="/">Login</Link>

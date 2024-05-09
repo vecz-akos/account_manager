@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto removeRole(String username, String roleName) {
         User user = userRepository.findByUsername(username).orElseThrow();
-        user.setRoles(user.getRoles().stream().filter(role -> role.getName().equals(roleName)).collect(Collectors.toSet()));
+        user.setRoles(user.getRoles().stream().filter(role -> !role.getName().equals(roleName)).collect(Collectors.toSet()));
         userRepository.save(user);
         return UserMapper.toUserDto(user);
     }
